@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 
-const App = (props) => {
+const Display = ({counter}) => <>Counter- {counter}</>
+
+const Button = ({ onClick, text }) =>
+    <button onClick={onClick}>
+      {text}
+    </button>
+
+
+
+const App = () => {
 
     const startNum = 0
 
     const [ counter, setCounter ] = useState(startNum)
 
-    const setToValue = (value) => {
-        setCounter(value)
-        console.log('counter is now', value)
-    }
+    const setToValue = (value) =>  () => setCounter(value)
 
     return (
         <>
-            Count: {counter}
+            <Display counter={counter} />
 
-            <button onClick={() => setToValue(counter+1)}>
-                plus
-            </button>
-
-            <button onClick={() => setToValue(0)}>
-                zero
-            </button>
+            <Button
+                onClick={setToValue(counter + 1)}
+                text='plus'
+            />
+            <Button
+                onClick={setToValue(counter - 1)}
+                text='minus'
+            />
+            <Button
+                onClick={setToValue(0)}
+                text='zero'
+            />
         </>
     )
 }
 
-let counter = 1
-
-ReactDOM.render(<App counter={counter} />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))
