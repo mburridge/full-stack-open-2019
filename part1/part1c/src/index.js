@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Display = ({counter}) => <>Counter- {counter}</>
+const Display = ({counter}) => <>Counter: {counter}</>
 
 const Button = ({ onClick, text }) =>
     <button onClick={onClick}>
       {text}
     </button>
-
-
 
 const App = () => {
 
@@ -16,7 +14,7 @@ const App = () => {
 
     const [ counter, setCounter ] = useState(startNum)
 
-    const setToValue = (value) =>  () => setCounter(value)
+    const setToValue = (value) => () => setCounter(value)
 
     return (
         <>
